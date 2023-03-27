@@ -1,5 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { Configuration, OpenAIApi } from 'openai';
+import {
+  Configuration,
+  OpenAIApi,
+  ListEnginesResponse,
+  ConfigurationParameters,
+} from 'openai';
 
 @Injectable()
 export class AppService {
@@ -9,9 +14,11 @@ export class AppService {
   async create() {
     const configuration = new Configuration({
       organization: 'org-gMqjfzctc4HUcwEfP4dNjmzn',
-      apiKey: process.env.OPENAI_API_KEY,
+      apiKey: '',
     });
     const openai = new OpenAIApi(configuration);
     const response = await openai.listEngines();
+    console.log(response);
+    return 'get right callback';
   }
 }
